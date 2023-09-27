@@ -9,6 +9,7 @@ from .forms import ReviewForm
 
 def home(request):
     searchTerm = request.GET.get('searchMovie')
+    print('buscando')
     if searchTerm: 
        movies = Movie.objects.filter(title__icontains=searchTerm) 
     else: 
@@ -21,6 +22,7 @@ def about(request):
 
 
 def detail(request, movie_id):
+    print('hola')
     movie = get_object_or_404(Movie,pk=movie_id)
     reviews = Review.objects.filter(movie = movie)
     return render(request, 'detail.html',{'movie':movie, 'reviews': reviews})
